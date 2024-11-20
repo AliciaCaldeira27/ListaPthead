@@ -11,10 +11,10 @@ typedef struct {
     int end;
 } Range;
 
-// O Mutex para sincronizar a impressão
+// O Mutex para sincronizar a impressÃ£o
 pthread_mutex_t print_mutex;
 
-// A função para verificar se um número é primo
+// A funÃ§Ã£o para verificar se um nÃºmero Ã© primo
 int is_prime(int num) {
     if (num < 2) return 0;
     if (num == 2) return 1;
@@ -25,7 +25,7 @@ int is_prime(int num) {
     }
     return 1;
 }
-// A função executada pelas threads
+// A funÃ§Ã£o executada pelas threads
 void* find_primes(void* arg) {
     Range* range = (Range*)arg;
     int i;
@@ -53,7 +53,7 @@ int main() {
     	// Determina o intervalo de cada thread
         Range* range = (Range*)malloc(sizeof(Range));
         if (range == NULL) {
-            perror("Erro ao alocar memória para o intervalo");
+            perror("Erro ao alocar memÃ³ria para o intervalo");
             return 1;
         }
         range->start = thread_id * 1000;
@@ -66,7 +66,7 @@ int main() {
         }
     }
     
-	// Aguardar todas as threads terminarem
+	// Aguarda todas as threads terminarem
     for (thread_id = 0; thread_id < THREAD_COUNT; thread_id++) {
         if (pthread_join(threads[thread_id], NULL) != 0) {
             perror("Erro ao aguardar a thread");
@@ -76,6 +76,6 @@ int main() {
     
 	// Destruir o mutex
     pthread_mutex_destroy(&print_mutex);
-    printf("Cálculo de números primos concluído.\n");
+    printf("CÃ¡lculo de nÃºmeros primos concluÃ­do.\n");
     return 0;
 }
